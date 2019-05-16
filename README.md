@@ -28,22 +28,30 @@ A step by step series of examples that tell you how to get a development env run
 
 Say what the step will be
 
-```
+
 Install Ubuntu
 
 Update Ubuntu with
+```
 sudo apt update && sudo apt upgrade
+```
 
 Install Expect:
+```
 apt-get install expect
+```
 
 Move into the directory of Expect and set the access rights:
+```
 cd /usr/bin/
 sudo chmod 755 expect
+```
 
 Create a folder at a path of your choosing where the scripts should be contained:
+```
 mkdir telephone
 cd telephone
+```
 
 Place the scripts into the folder and also your private key for your SSH connection
 
@@ -53,37 +61,48 @@ Rightclick the directory and create a "share" permission for a certain user/grou
 Find out which ip-address the windows machine has in your local network (192.168.178.xxx)
 Go into the Ubuntu directory /mnt/ and create a new folder that will later on be mounted/mapped to the windows shared folder
 Mount the drive in Ubuntu by using
+```
 sudo mount -t cifs -user=xxx_windows_admin_username //192.168.178.xxx_windows_local_ip/xxx_shared_folder_path /mnt/xxx_name_of_chosen_folder_to_map_windows_WORM_folder
+```
 
 Check if you mounted the drive correctly by placing a random file into it via Linux or Windows and check on both devices if it is visible. You might need to set permission rights on Ubuntu with applying this command to the mounted folder
+```
 cd /mnt/
 sudo chmod 755 xxx_mounted_folder_name
+```
 
 Open the scripts provided in this project under /scripts/ and change all the variables starting with xxx to your passwords, pathes, serveradresses etc
 
 Then change into the directories containing your scripts and give them execution permissions:
+```
 sudo chmod u+x xxx_scriptname1
 sudo chmod u+x xxx_scriptname2
+```
 
 Now everything should be setup and you can invoke the scripts by:
+```
 cd /xxx_path_containing_scripts/
 ./xxx_scriptname1
 ./xxx_scriptname2
+```
 
 Check the result in the mounted folder, all files from the remote server accessed through sftp and SSH should be now in your windows WORM-drive. Except allowed us to automate the whole process of speaking to the server and requesting its files. Yay!
 
 But executing this process by hand is still not satisfying that is why a crontab has be made to automate the whole process even further. This can be done like this:
+```
 sudo -i
 crontab -e
 1
+```
 
 Now you should be with nano (command-line text editor) in a crontab file. Scroll down the the arrow keys until you reach the end to the file and add: (Read up on how to set the times for the crontab this example will invoke the script1 daily at 02:01 in the night and script2 at 03:01 in the night.)
+```
 01 02 * * * xxx_path_to_script1
 01 03 * * * xxx_path_to_script2
 
 Then press CTRL + X Then Y and then ENTER.
+
 Fulfilling regulatory aspects like having an automated process that handles office phone recordings and persists them immutable was never easier.
-```
 
 ## Authors
 
