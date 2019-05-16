@@ -99,6 +99,7 @@ Now you should be with nano (command-line text editor) in a crontab file. Scroll
 ```
 01 02 * * * xxx_path_to_script1
 01 03 * * * xxx_path_to_script2
+```
 
 Then press CTRL + X Then Y and then ENTER.
 
